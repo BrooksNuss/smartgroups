@@ -35,7 +35,6 @@ angular.module("mainApp").controller('adminController', function($scope, $stateP
 
 	//Update user
 	$scope.update = function(){
-		$scope.teacherList[$scope.current].name=form.name;
 		$scope.teacherList[$scope.current].email=form.email;
 		userService.update($scope.teacherList[$scope.current]);
 	}

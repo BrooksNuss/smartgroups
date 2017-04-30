@@ -60,7 +60,15 @@ router.route('/users/:username')
 				return res.json(user);
 			})
 		})
-	});
+	})
+
+	.delete(function(req, res){
+		User.remove({_id: req.params.username}, function(err){
+			if(err)
+				return res.status(500).send(err)
+			return res.send("deleted");
+		})
+	})
 
 router.route('/users/')
 	
