@@ -4,6 +4,7 @@
 //May 2017
 //Regarding inline comments, functions that are repeated across files(setCurrent, for example),
 //  are only commented on the first file in which they appear alphabetically.
+//The config file is located in config.json. There are only 3 parameters that need be adjusted by the user.
 
 var express = require('express');
 var path = require('path');
