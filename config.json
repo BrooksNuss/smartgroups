@@ -9,5 +9,5 @@
 		"databaseURL": "mongodb://smartgroups:HaZWevu7Vg6EwIskEaJRHkcvUAldP4lnMD3aw5D6eyUCjsSkfC7oWMU4vrW13KdE8md5UIsIUCT6fQ7rHagWxQ==@smartgroups.documents.azure.com:10250/?ssl=true"
 	},
 
-	"environment": "local"
+	"environment": "remote"
 }
