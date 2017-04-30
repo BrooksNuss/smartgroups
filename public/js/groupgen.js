@@ -113,10 +113,6 @@ angular.module("mainApp").controller('groupgenController', function($scope, $sta
 						else
 							aud.push(currentStudent[0]);
 					}
-					console.log("vis: " + vis.length);
-					console.log("kin: " + kin.length);
-					console.log("ver: " + ver.length);
-					console.log("aud: " + aud.length);
 					for(var i=0;i<numGroups;i++){
 						$scope.addGroup(i+1);
 						skipVis=false;

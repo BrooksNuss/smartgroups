@@ -120,7 +120,6 @@ angular.module("mainApp").controller('classListController', function($scope, $st
 			}
 		});
 		//update remote classes with new added student
-		console.log("WE MADE IT");
 		classService.update($scope.classArr[$scope.current]);
 	}
 

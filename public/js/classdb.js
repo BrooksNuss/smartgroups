@@ -33,7 +33,6 @@ angular.module("mainApp").controller('classdbController', function($scope, $stat
 		if($scope.classArr[$scope.current].studentList.length==0){
 			classService.delete($scope.classArr[$scope.current], function(result){
 				if(!result.status){
-					console.log(result.reason);
 				}
 			});
 			$scope.classArr.splice($scope.current, 1);

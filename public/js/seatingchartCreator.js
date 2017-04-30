@@ -30,8 +30,6 @@ angular.module("mainApp").controller('seatingchartCreatorController', function($
 	  			$rootScope.seatingReset = true;
 		});
 	}
-	else
-		console.log("NO CHART SELECTED");
 
   //Save current chart data to database
 	$scope.updateChart = function(){

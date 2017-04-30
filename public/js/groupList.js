@@ -35,7 +35,6 @@ angular.module("mainApp").controller('groupListController', function($scope, $st
 			groupService.save(newGroup);
 			$scope.groupArr = groupByClassService.query({class: $rootScope.currentClass._id}, function(result){
 				$rootScope.currentClass.groupList.push({gid: result[0]._id, name: result[0].name});
-				console.log("updating class service");
 				classService.update($rootScope.currentClass);
 			});
 		}
