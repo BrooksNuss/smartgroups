@@ -1,4 +1,9 @@
 //NodeJS server application. This is run from the ./bin/www file.
+//SmartGroups Classroom Management System
+//By Brooks Nuss, Justin Poole, and Alec Toth
+//May 2017
+//Regarding inline comments, functions that are repeated across files(setCurrent, for example),
+//  are only commented on the first file in which they appear alphabetically.
 
 var express = require('express');
 var path = require('path');

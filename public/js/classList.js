@@ -20,7 +20,7 @@ angular.module("mainApp").controller('classListController', function($scope, $st
 
 	$scope.classArr = classTeacherService.query({teacher: $rootScope.current_user.username});
 
-
+	//Add new class locally and to database
 	$scope.addClass=function() {
 		var newClass={name: "New Class",
 		teacher: $scope.current_user.username,
@@ -31,11 +31,13 @@ angular.module("mainApp").controller('classListController', function($scope, $st
 		$scope.classArr = classTeacherService.query({teacher: $rootScope.current_user.username});
 	}
 
+	//Remove class locally and from the database
 	$scope.removeClass=function() {
 		classService.delete($scope.classArr[$scope.current]);
 		$scope.classArr.splice($scope.current, 1);
 	}
 
+	//Update display and currently selected item upon clicking list item
 	$scope.setCurrent=function(index) {
 		$scope.selected=1;
 		$scope.current=index;
@@ -181,6 +183,7 @@ angular.module("mainApp").controller('classListController', function($scope, $st
 		});
 	}
 
+	//Upon logging out, reset these parameters for the next user
 	$scope.$on('logout', function(){
 		$scope.classArr=[];
 		$scope.current=0;

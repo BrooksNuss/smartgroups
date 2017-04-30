@@ -41,6 +41,7 @@ angular.module("mainApp").controller('classdbController', function($scope, $stat
 		}
 	}
 
+	//Update display and currently selected item upon clicking list item
 	$scope.setCurrent=function(index) {
 		$scope.current=index;
 		$scope.form.name=$scope.classArr[index].name;
