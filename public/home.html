@@ -1,0 +1,52 @@
+<h1 ng-show="current_user.type=='admin'" class="text-center">Access the admin page from the account menu in the top right</h1>
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>My Classes</h3>
+				<h5>Select One</h5>
+			</div>
+			<div class="panel-body">
+				<table class="table-striped"><tbody>
+					<tr ng-repeat="class in classList"><td>
+						<div class="hoverTipRight">
+							<a href="" ng-click="setCurrent($index)"><h4>{{class.name}}</h4></a>
+							<span class="tipText">Select this class</span>
+						</div>
+					</td></tr>
+				</tbody></table>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-4 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>Daily Activities</h3>
+			</div>
+			<div class="panel-body">
+				<h4>Random Student Selector</h4>
+				<h4 class="text-center" ng-show="currentClass">{{eligible()}} of {{currentClass.studentList.length}} students are  available</h4>
+				<!-- <div class="btn-group"> -->
+					<button class="btn-primary" ng-click="complete()">Complete</button>
+					<button class="btn-primary" ng-click="reset()">Reset</button>
+					<button class="btn-primary" ng-click="selectRandom()">Select Random</button>
+				<!-- </div> -->
+				<div class="checkbox">
+					<table ng-show="currentClass" class="table-striped"><tbody>
+						<span ng-repeat="student in currentClass.studentList">
+							<input type="checkbox" ng-model="student.selected"><a href="" class="done-{{student.done}}" ng-click="student.selected=!student.selected">{{student.name}}</a></input>
+						</span>
+					</tbody></table>
+				</div>
+					<!-- <div class="checkbox">
+			            <table class="table-striped"><tbody>
+							<span ng-repeat="student in studentdb">
+								<input type="checkbox" ng-click="toggleStudentSelect($index)" ng-model="student.selected"><a href="" ng-click="student.selected=!student.selected">{{student.name}}</a></input>
+							</span>
+						</tbody></table>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

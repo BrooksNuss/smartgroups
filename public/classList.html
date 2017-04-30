@@ -1,0 +1,139 @@
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>Your Classes</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table-striped"><tbody>
+					<tr ng-repeat="class in classArr"><td>
+							<a href="" ng-click="setCurrent($index)">{{class.name}}</a>
+					</td></tr>
+				</tbody></table>
+			</div>
+		</div>
+		<div class="hoverTip">
+			<a ng-click="addClass()" href=""><span class="glyphicon glyphicon-plus addBtn" aria-hidden="true"></span><span class="addBtn">Add</span></a>
+			<span class="tipText">Add a new blank class</span>
+		</div>
+		<div class="hoverTip">
+			<a ng-click="removeClass()" href=""><span class="glyphicon glyphicon-minus removeBtn" aria-hidden="true"></span><span class="removeBtn">Remove</span></a>
+			<span class="tipText">Delete the highlighted class</span>
+		</div>
+	</div>
+	<div class="col-sm-5 col-sm-offset-1 panel panel-default">
+		<div class="panel-heading text-center">
+			<h3>Class Information</h3>
+			<h5 ng-hide="selected" class="text-center">Select a class from the left (or add a new class)</h5>
+			<h5 ng-bind="classArr[current].name" class="text-center"></h5>
+		</div>
+		<div class="panel-body">
+			<form name="form" ng-model="form" novalidate class="simple-form">
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Name:<br> <input class="form-control" placeholder="class name" name="" type="text" ng-model="form.name"></label>
+					</div>
+					<div class="col-sm-5">
+						<label>Teacher:<br> <input class="form-control" placeholder="teacher name" name="" type="text" ng-model="form.teacher"></label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Student List</h4>
+						<table class="table-striped inner-table table-bordered table-condensed"><tbody>
+							<tr ng-repeat="student in classArr[current].studentList"><td>
+								<a href="">{{student.name}}</a>
+							</td></tr>
+						</tbody></table>
+						<div class="hoverTip">
+						<a href="" data-toggle="modal" data-target="#addModal" ng-click="startStudentAddSelect()"><span class="glyphicon glyphicon-plus addBtn" aria-hidden="true"></span><span class="addBtn">Add</span></a>
+						<span class="tipText">Add Students into the selected class</span>
+						</div>
+						<div class="hoverTip">
+						<a href="" data-toggle="modal" data-target="#removeModal" ng-click="startStudentRemoveSelect()"><span class="glyphicon glyphicon-minus removeBtn" aria-hidden="true"></span><span class="removeBtn">Remove</span></a>
+						<span class="tipText">Choose Students to remove from selected class</span>
+						</div>
+					</div>
+					<!-- Modal for add -->
+					<div class="modal fade" id="addModal" role="dialog">
+					    <div class="modal-dialog">
+					      	<div class="modal-content">
+						        <div class="modal-header">
+						            <button type="button" class="close" data-dismiss="modal">&times;</button>
+						            <h4 class="modal-title">Add students to class</h4>
+						        </div>
+						        <div class="modal-body">
+						            <p>Select the students to add to this class</p>
+						            <div class="checkbox">
+							            <table class="table-striped"><tbody>
+											<span ng-repeat="student in studentdb">
+												<input type="checkbox" ng-click="toggleStudentSelect($index)" ng-model="student.selected"><a href="" ng-click="student.selected=!student.selected">{{student.name}}</a></input>
+											</span>
+										</tbody></table>
+									</div>
+									<div class="alert alert-success" ng-show="addComplete && addSuccess">
+  										Student(s) successfully added to class!
+									</div>
+									<div class="alert alert-danger" ng-show="addComplete && !addSuccess">
+  										Class already contains at least one of the chosen students!
+									</div>
+						        </div>
+						        <div class="modal-footer">
+						            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAdd()">Close</button>
+						            <button type="button" class="btn btn-default" ng-click="addToClass()">Add to class</button>
+						        </div>
+						    </div>
+					    </div>
+					</div>
+					<!-- Modal for remove -->
+					<div class="modal fade" id="removeModal" role="dialog">
+					    <div class="modal-dialog">
+					      	<div class="modal-content">
+						        <div class="modal-header">
+						            <button type="button" class="close" data-dismiss="modal">&times;</button>
+						            <h4 class="modal-title">Remove students from class</h4>
+						        </div>
+						        <div class="modal-body">
+						            <p>Select the students to remove from this class</p>
+						            <div class="checkbox">
+						            <table class="table-striped"><tbody>
+										<span ng-repeat="student in studentdb">
+											<input type="checkbox" ng-click="toggleStudentSelect($index)" ng-model="student.selected"><a href="" ng-click="student.selected=!student.selected">{{student.name}}</a></input>
+										</span>
+									</tbody></table>
+									</div>
+									<div class="alert alert-success" ng-show="removeComplete && removeSuccess">
+  										Student(s) successfully removed from class!
+									</div>
+									<div class="alert alert-danger" ng-show="removeComplete && !removeSuccess">
+  										The student has already been removed from the class!
+									</div>
+						        </div>
+						        <div class="modal-footer">
+						            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeRemove()">Close</button>
+						            <button type="button" class="btn btn-default" ng-click="removeFromClass()">Remove from class</button>
+						        </div>
+						    </div>
+					    </div>
+					</div>
+					<div class="col-sm-5">
+						<h4>Group List</h4>
+						<table class="table-striped inner-table table-bordered table-condensed"><tbody>
+							<tr ng-repeat="group in classArr[current].groupList"><td>
+								<a href="" class="active-{{group.active}}">{{group.name}}</a>
+							</td></tr>
+						</tbody></table>
+					</div>
+				</div>
+				<div class=centerText>
+					<input type="submit" class="btn btn-primary" ng-click="update(form)" value="Save"><br>
+					<div class="hoverTip">
+						<a href="" data-toggle="modal" data-target="#helpModal" ng-click="helpBtn()">Help</a>
+						<span class="tipText">Review section A for help with class creation</span>
+					</div>	
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>

@@ -1,0 +1,14 @@
+<div class="login-card">
+		    <h1>Smart Groups</h1>
+		    <h4>log-in</h4>
+		    <form name="form" ng-model="form" novalidate class="simple-form">
+		        <input type="text" placeholder="Username" id="user" ng-model="username">
+		        <input type="password" placeholder="Password" id="pass" ng-model="password">
+		        <div class="validPass" class="text-center" ng-show="!validLogin"><h4>Invalid username or password</h4></div>
+		        <input type="submit" class="login login-submit" value="log-in" ng-click="login(username, password)">
+		    </form>
+		    
+		    <div class="login-help">
+		    	<a href="" ng-click="beginRegister()">Create a New Teacher Account</a>
+		    </div>
+    	</div>

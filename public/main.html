@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<base href="/">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-resource.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
+	<script type="text/javascript" src="/js/main.js"></script>
+	<script type="text/javascript" src="/js/home.js"></script>
+	<script type="text/javascript" src="/js/classList.js"></script>
+	<script type="text/javascript" src="/js/studentList.js"></script>
+	<script type="text/javascript" src="/js/studentdb.js"></script>
+	<script type="text/javascript" src="/js/groupList.js"></script>
+	<script type="text/javascript" src="/js/login.js"></script>
+	<script type="text/javascript" src="/js/classdb.js"></script>
+	<script type="text/javascript" src="/js/groupgen.js"></script>
+	<script type="text/javascript" src="/js/admin.js"></script>
+	<script type="text/javascript" src="/js/seatingcharts.js"></script>
+	<script type="text/javascript" src="/js/seatingchartCreator.js"></script>
+	<script type="text/javascript" src="./js/go.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.7.8/go-debug.js"></script> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/signInStyle.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+	<div ng-app="mainApp" class="page-wrapper">
+
+		<div class="container-fluid page-body" ng-show="authenticated">
+			<div class="row">
+				<!-- SIDEBAR -->
+				<div class="col-sm-3 col-md-2 navigation">
+					<div class="sidebar">
+						<div ng-controller="sidebarController as sidebar">
+							<ul>
+								<li ng-repeat="parent in sidebarArr">
+									<a href="" id="{{parent.text.split(' ').join('')}}-sidebar-button" class="active-{{parent.active}} sideParent" data-toggle="collapse" data-target="#{{parent.text}}Drop" id="{{parent.text}}" ng-click="setActiveParent(parent)">{{parent.text}}</a>
+									<ul id="{{parent.text}}Drop" class="collapse refreshCollapse">
+										<li ng-repeat="child in parent.children">
+											<a href="" id="{{child.text.split(' ').join('')}}-sidebar-button" class="active-{{child.active}} sideChild" ng-click="setActiveChild(child)">{{child.text}}</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- HEADER -->
+					<nav class="navbar navbar-default navbar-fixed-top">
+				  		<div class="col-sm-4 col-md-3 text-left">
+				  			<h3>Smart Groups™</h3>
+				  		</div>
+				  		<div class="col-sm-6 col-md-7">
+				  			<div class="hoverTip">
+				  			<h4 ng-bind="currentClass.name" class="text-center"></h4>
+				  			<span class="tipText">Classes may be selected from the HOME menu</span>
+				  			</div>
+				  		</div>
+				  		<div class="col-sm-2 col-md-2 text-center">
+				  			<div class="btn-group">
+								<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="account-btn">
+									{{current_user.username}}
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="" data-toggle="modal" data-target="#accountModal" ng-click="openAccount()">Account</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="" ng-click="signout()">Logout</a></li>
+									<li role="separator" class="divider" ng-show="current_user.type=='admin'"></li>
+									<li><a href="" ng-click="adminBtn()" ng-show="current_user.type=='admin'">Admin</a></li>
+								</ul>
+							</div>
+				  		</div>
+					</nav>
+					<!-- FOOTER -->
+					<nav class="navbar navbar-default navbar-fixed-bottom">
+				  		<div class="col-sm-4 col-md-4">
+				  			<div class="hoverTipRight">
+				  			<h4 ng-bind="currentClass.name" class="text-center"></h4>
+				  			<span class="tipText">Classes may be selected from the HOME menu</span>
+				  			</div>
+				  		</div>
+				  		<div class="col-sm-8 col-md-8">
+				  		<ul class="list-inline text-center">
+				  			<li><a href="" ng-click="homeBtn()">Home</a> |</li>
+				  			<li><a href="" ng-click="classesBtn()">Classes</a> |</li>
+				  			<li><a href="" ng-click="studentsBtn()">Students</a> |</li>
+				  			<li><a href="" ng-click="groupsBtn()">Groups</a> |</li>
+				  			<li><a href="" data-toggle="modal" data-target="#startModal" ng-click="helpStart()">Get Started</a> |</li>
+				  			<li><a href="" data-toggle="modal" data-target="#helpModal" ng-click="helpBtn()">Help</a></li>
+				  		</div>
+					</nav>
+				</div> <!-- End sidebar -->
+
+				<!-- BODY CONTENT -->
+				<div class="col-sm-9 col-md-10 body-content">
+					<div class="vertical-align">
+						<ui-view></ui-view>
+					</div>
+				</div> <!-- End body-content -->
+			</div> <!-- End row -->
+		</div> <!-- End container -->
+		<div ng-show="!authenticated">
+			<ui-view></ui-view>
+		</div>
+		<!-- Getting Started modal -->
+		<div class="modal fade" id="startModal" role="dialog">
+		    <div class="modal-dialog">
+		      	<div class="modal-content">
+			        <div class="modal-header">
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+			            <h3 class="modal-title">Getting Started</h3>
+			        </div>
+			        <div class="modal-body">
+			            <h4>First Time User?</h4>
+				            <ol>
+					            <li>Create your first<mark>'Class'</mark> via the <mark>'Classes'</mark> menu</li>
+					            <li>Add students and their information into the <mark>'Student Database'</mark> via the <mark>'Students'</mark> menu</li>
+					            <li>Populate your new <mark>'Class'</mark> with the <mark>'Students'</mark> inside the <mark>'Classes'</mark> menu</li>
+					            <li>Use your newly populated <mark>'Class'</mark> to create <mark>'Groups'</mark> by hand or allow our software to make them for you</li>
+					            <li>Visit our <mark><a href="" data-toggle="modal" data-target="#helpModal" ng-click="helpBtn()">HELP</a></mark> page for more detailed instructions</li>
+				            </ol>
+			            
+			        </div>
+			        <div class="modal-footer">
+			            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			    </div>
+		    </div>
+		</div>
+		<!-- Help modal -->
+  		<div class="modal fade" id="helpModal" role="dialog">
+		    <div class="modal-dialog">
+		      	<div class="modal-content">
+			        <div class="modal-header">
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+			            <h4 class="modal-title">Help/FAQ</h4>
+			        </div>
+			        <div class="modal-body">
+			            <h4><mark>A:</mark> How can I add a new class?</h4>
+				            <ol>
+					            <li>Navigate to the <mark>'Classes'</mark> dropdown on the left navigation bar</li>
+					            <li>Within the dropdown menu, choose the <mark>'class list'</mark> option</li>
+					            <li>Within the <mark>'class list'</mark> page select the <mark>'+ Add'</mark> option located beneath the 'Your Classes' list</li>
+					            <li>Select the newly created class from the <mark>'Your Classes'</mark> list, and then edit the <mark>'Class Information'</mark> form (remember to use a descriptive class name)</li>
+					            <li>Finally, save the changes to your new class by clicking the <mark>'Save'</mark> button</li>
+				            </ol>
+			            <h4><mark>B:</mark> How can students be added to the database?</h4>
+				            <ol>
+					            <li>Navigate to the <mark>'Students'</mark> option on the left navigation bar</li>
+					            <li>Within the dropdown menu, choose the <mark>'student database'</mark> option</li>
+					            <li>Within the <mark>'student database'</mark> page select the <mark>'+ Add'</mark> button located beneath the 'All Students' list</li>
+					            <li>Select the newly added student from the <mark>'All Students'</mark> list, and then edit the <mark>'Student Information'</mark> form</li>
+					            <li>Finally, save the changes to your Student by clicking the <mark>'Save'</mark> button</li>
+				            </ol>
+			            <h4><mark>C:</mark> How can students be added into a class?</h4>
+			            	<ol>
+					            <li>Navigate to the <mark>'Classes'</mark> dropdown on the left navigation bar</li>
+					            <li>Within the dropdown menu, choose the <mark>'class list'</mark> option</li>
+					            <li>Within the <mark>'class list'</mark> page select from <mark>Your Classes</mark> the desired class</li>
+					            <li>Select the <mark>'Add +'</mark> button from within the <mark>'Class Information'</mark> form</li>
+					            <li>Highlight the students you wish to add by clicking on them and then using the <mark>'Add to class'</mark> button</li>
+					            <li>Finally, use the <mark>'Save'</mark> button within the <mark>'Class Information'</mark> form to finalize any changes</li>
+				            </ol>
+			            <h4><mark>D:</mark> How do I create groups?</h4>
+			            	<ol>
+					            <li>Navigate to the <mark>'Groups'</mark> option on the left navigation bar</li>
+					            <li>Within the dropdown menu, choose the <mark>'Group List'</mark> option</li>
+					            <li>Within the <mark>'Group List'</mark> page select the <mark>'+ Add'</mark> option located beneath the 'Groups' list</li>
+					            <li>Select the newly created group from the <mark>'Groups'</mark> list, and then edit the <mark>'Group Information'</mark> form</li>
+					            <li>Finally, save the changes to your new class by clicking the <mark>'Save'</mark> button</li>
+					            <li>To add Students to this newly created group, use the <mark>'+ add'</mark> button at the bottom of the <mark>'Group Information'</mark> form</li>
+				            </ol>
+			            <h4><mark>E:</mark> Using the Group Generator</h4>
+			            	<ol>
+					            <li>Navigate to the <mark>'Groups'</mark> option on the left navigation bar</li>
+					            <li>Within the dropdown menu, choose the <mark>'Group Generator'</mark> option</li>
+					            <li>Within the <mark>'Group Generator'</mark> page fill in the form, hovering over the text boxes for helpful hints</li>
+					            <li>Once the form is complete select the <mark>'Save'</mark> button, this will create your groups and save them into the database</li>
+				            </ol>
+				        <h4><mark>F:</mark> Creating Seating Charts</h4>
+				        	<ol>
+				        		<li>Navigate to the <mark>'Seating'</mark> option on the left navigation bar</li>
+				        		<li>Within the dropdown menu for <mark>'Seating'</mark> select the <mark>'Seating Charts'</mark> option</li>
+				        		<li>A list of seating charts you have created will appear in the left table of this page</li>
+				        		<li>Either select one of these <mark>'Charts'</mark> or select the <mark>'+ add'</mark> button to create a new seating chart</li>
+				        		<li>Select the desired chart from the list of available seating charts and then navigate to the <mark>'Create Seating Charts'</mark> option on the left navigation bar</li>
+				        		<li>Within the <mark>'Create Seating Charts'</mark> page, you may drag and drop students to various tables</li>
+				        	</ol>
+			        </div>
+			        <div class="modal-footer">
+			            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			    </div>
+		    </div>
+		</div>
+		<!-- Account modal -->
+  		<div class="modal fade" id="accountModal" role="dialog">
+		    <div class="modal-dialog">
+		      	<div class="modal-content">
+			        <div class="modal-header">
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+			            <h4 class="modal-title">Account Settings</h4>
+			        </div>
+			        <div class="modal-body">
+			            <form name="accountForm" ng-model="accountForm" novalidate class="simple-form">
+							<label>First Name:<br> <input class="form-control" placeholder="" name="" type="text" ng-model="accountForm.fname"></label><br>
+							<label>Last Name:<br> <input class="form-control" placeholder="" name="" type="text" ng-model="accountForm.lname"></label><br>
+							<label>Email:<br> <input class="form-control" placeholder="" name="" type="text" ng-model="accountForm.email"></label><br>
+							<label>Username:<br> <input readonly class="form-control" placeholder="" name="" type="text" ng-model="accountForm.username"></label><br>
+							<p>Change password:<br></p>
+
+							<label>New Password:<br> <input type="password" class="form-control" placeholder="" name="" type="text" ng-model-options='{ debounce: 500 }' ng-model="accountForm.password"><div class="validPass" id="output4" ng-show="!validPass">Invalid password</div></label><br>
+							
+							<label>Retype:<br> <input type="password" class="form-control" placeholder="" name="" type="text" ng-model-options='{debounce: 500}' ng-model="accountForm.passMatch"><div class="validPass" id="output5"  ng-show="!validMatch">Passwords don't match</div></label><br>
+							
+							<input type="submit" class="btn btn-primary" ng-click="changePass()" value="Change">
+						</form>
+			        </div>
+			        <div class="modal-footer">
+			            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			            <input type="submit" class="btn btn-primary" ng-click="updateAccount(accountForm)" value="Save">
+			        </div>
+			    </div>
+		    </div>
+		</div>
+
+	</div> <!--mainApp div (whole page) -->
+</body>
+</html>

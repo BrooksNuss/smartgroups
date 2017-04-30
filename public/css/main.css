@@ -1,0 +1,580 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+/*
+COMMONLY USED COLORS
+
+orange - #e58d22
+blue - #abceea
+green - #b1eaab
+navbar-grey - #f0f0f0
+
+*/
+body {
+	padding-top: 50px;
+	padding-bottom: 100px;
+	font-size: 14px;
+	height: 100vh;
+	font-family: "Lucida Console", Monaco, monospace;
+	}
+
+body:after {
+    content : "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../images/apple.png"); 
+    width: 100%;
+    height: 100%;
+    opacity : 0.5;
+    z-index: -1;
+    background-repeat: no-repeat;
+}
+
+.page-wrapper {
+	height: 100%;
+}
+
+.navbar-fixed-top h3 {
+	margin-top: 8px;
+	margin-left: 15px;
+	margin-bottom: 0px;
+	font-weight: 100;
+	font-size: 32px;
+	z-index: 10;
+}
+
+.navbar {
+	background-color: #f0f0f0;
+}
+
+
+.navbar h4{
+	font-weight: bold;
+	color: #e58d22;
+	font-size: 22px;
+	background-color: #f0f0f0;
+	border-radius: 25px;
+	padding: 5px;
+	border-width: 4px; 
+	border-color: #abceea;
+}
+
+.navigation {
+	display: none;
+}
+@media (min-width: 768px) {
+	.navigation {
+	    left: 0;
+	    z-index: -1;
+	    display: block;
+	    padding: 20px;
+	    padding-top: 0px;
+	    overflow-x: hidden;
+	    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+	    background-color: #f0f0f0;
+	    border-right: 1px solid #eee;
+	    height: 100%
+	}
+}
+
+.sidebar ul {
+	margin-left: -20px;
+	margin-right: -20px;
+	padding-left: 0px;
+	list-style: none;
+}
+
+.sidebar a {
+	display: block;
+	color: dodgerblue;
+	padding-left: 20px;
+	padding-right: 150px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: transparent;
+	border-style: solid;
+	border-color: #e7e7e7;
+	border-width: 0px;
+	border-bottom-width: 2px;
+	font-size: 18px;
+}
+
+.sidebar .sideChild {
+	padding-left: 70px;
+	padding-right: 60px;
+	background-color: #f5f5f5;
+}
+
+.sidebar .active-true, .sidebar .active-true:hover, .sidebar .active-true:focus {
+	background-color: transparent;
+	color: white;
+}
+
+.navbar li {
+	padding-top: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#account-btn {
+	margin-top: 10px;
+}
+
+.vertical-align {
+ 	margin: 0 auto;
+ 	margin-top: 10%;
+ 	padding-bottom: 20px;
+}
+
+.page-body {
+	height: 100%;
+}
+
+.page-body>div {
+	height: 100%;
+}
+
+.body-content {
+	height: 100%;
+	overflow-y: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.addBtn {
+	color: green;
+}
+
+.removeBtn {
+	color: red;
+}
+
+
+
+body {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	font-size: 14px;
+	height: 100vh;
+}
+
+.page-wrapper {
+	height: 100%;
+}
+
+.navbar-fixed-top h3 {
+	margin-left: 15px;
+	margin-bottom: 0px;
+	font-weight: 100;
+    font-size: 1.7em;
+}
+
+.navbar {
+	background-color: #b1eaab;
+}
+
+.navigation {
+	display: none;
+}
+@media (min-width: 768px) {
+	.navigation {
+	    left: 0;
+	    z-index: 1000;
+	    display: block;
+	    padding: 20px;
+	    padding-top: 0px;
+	    overflow-x: hidden;
+	    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+	    background-color: #f0f0f0;
+	    border-right: 1px solid #eee;
+	    height: 100%
+	}
+}
+
+.sidebar ul {
+	margin-left: -20px;
+	margin-right: -20px;
+	padding-left: 0px;
+	list-style: none;
+}
+
+.sidebar a {
+	text-decoration: none;
+	display: block;
+	color: black;
+	padding-left: 20px;
+	padding-right: 150px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: transparent;
+	border-style: solid;
+	border-color: #adadad;
+	border-width: 0px;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	font-size: 20px;
+	font-weight: 100;
+}
+
+.sidebar .sideChild {
+	border-bottom-width: 1px;
+	border-color: #bababa;
+	padding-left: 80px;
+	padding-right: 60px;
+	background-color: #f3f3f3;
+	font-size: 16px;
+	color: black;
+}
+
+.sidebar .active-true, .sidebar .active-true:hover, .sidebar .active-true:focus {
+	transition: .5s;
+	border-color: #abceea;
+	border-left-width:30px;
+	border-top-width:0px;
+	color: black;
+}
+
+.navbar li {
+	padding-top: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.navbar li a{
+	color:black;
+	font-weight: 100;
+	font-size:16px;
+
+	-o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.2s;
+}
+
+.navbar li a:hover{
+	text-decoration: none;
+	color:#e58d22;
+}
+
+.navbar button{
+	font-weight:100;
+	border: 0px;
+  	color: black;
+  	text-shadow: 0 1px rgba(0,0,0,0.1); 
+  	background-color: #abceea;
+	margin-right:10px;
+	margin-top: 10px;
+
+	-o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+}
+.navbar button:hover {
+	background-color:#abceea;
+	color: black;
+
+}
+
+.vertical-align {
+ 	margin: 0 auto;
+ 	margin-top: 10%;
+ 	padding-bottom: 20px;
+}
+
+.page-body {
+	height: 100%;
+}
+
+.page-body>div {
+	height: 100%;
+}
+
+.body-content {
+	height: 100%;
+	overflow-y: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.panel {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.panel-body {
+	padding: 0px;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #f0f0f0;
+}
+
+.panel-body table,tbody,tr {
+	width: 100%;
+}
+
+.inner-table {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.panel-body a {
+	font-size: 1.2em;
+}
+
+
+.panel-body h4, .panel-body span {
+	padding-left: 10px;
+}
+
+.panel-body span {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.panel-body button {
+	margin: 10px;
+}
+.panel {
+	padding-left: 0px;
+	padding-right: 0px;
+	background-color: #F7F7F7;
+    margin: 0 auto 10px;
+    border-radius: 2px;
+    box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.panel h3 {
+	font-size: 25px;
+	font-weight:100;
+}
+.panel-default h5 {
+	color: #e58d22;
+}
+
+.panel-body {
+	padding: 0px;
+	background-color: #b1eaab;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #f0f0f0;
+}
+
+.panel-body table,tbody,tr {
+	width: 100%;
+}
+
+.panel-body a {
+	font-size: 1.2em;
+}
+
+.panel-body h4 {
+	padding-left: 10px;
+	font-size: 24px;
+}
+.panel-body button {
+	margin: 10px;
+	border: 0px;
+  	color: black;
+  	font-weight: 100; 	
+  	background-color: #f0f0f0;
+  	-o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+
+}
+
+.panel-body form{
+	background-color: #abceea;
+}
+.panel-body tr a{
+	font-weight: 100;
+	color:black;
+}
+
+.panel-body tr a:focus{
+	color: #e58d22;
+	text-decoration: none;
+	font-weight: 120;
+}
+
+
+.panel-body label{
+	font-size: 18px;
+	margin-left: 10px;
+	width: 100%;
+	margin-right: 10px;
+}
+
+.addBtn {
+	color: green;
+	font-size: 20px;
+}
+
+.removeBtn {
+	color: red;
+	font-size: 20px;
+}
+.modal-body mark {
+	background-color:white;
+	color:#e58d22;
+}
+
+.hoverTip{
+	position: relative;
+    display: inline-block;
+}
+.hoverTip .tipText{
+	visibility: hidden;
+    width: 150px;
+    background-color: #ffedad;
+    font-size: 14px;
+    font-weight: 100;
+    color: black;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.hoverTip .tipText{
+	opacity: 0;
+	transition: opacity .75s;
+}
+.hoverTip:hover .tipText{
+	opacity: .75;
+	visibility: visible;
+}
+
+.hoverTipRight{
+	position: relative;
+    display: inline-block;
+}
+.hoverTipRight .tipText{
+	visibility: hidden;
+    width: 150px;
+    background-color: #ffedad;
+    font-size: 14px;
+    font-weight: 100;
+    color: black;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.hoverTipRight .tipText{
+	opacity: 0;
+	transition: opacity .75s;
+	top: -5px;
+    left: 105%; 
+
+}
+.hoverTipRight:hover .tipText{
+	opacity: .75;
+	visibility: visible;
+}
+.hoverTipTop{
+	position: relative;
+    display: inline-block;
+}
+.hoverTipTop .tipText{
+	visibility: hidden;
+    width: 150px;
+    background-color: #ffedad;
+    font-size: 14px;
+    font-weight: 100;
+    color: black;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.hoverTipTop .tipText{
+	opacity: 0;
+	transition: opacity .75s;
+	bottom: 100%;
+    padding-bottom: 5px; 
+
+}
+.hoverTipTop:hover .tipText{
+	opacity: .90;
+	visibility: visible;
+}
+.centerText {
+	text-align: center;
+	float: center;
+}
+.checkbox span{
+	padding-left: 20px;
+    height: 20px;
+    display: block;
+}
+
+/*seating chart*/
+#myFlexDiv {
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: center;
+  }
+  @media (min-width: 768px) {
+    #myGuests {
+      width: 100px;
+      height: 500px;
+      margin-right: 10px;
+      background-color: #fff;
+    }
+    #myDiagramDiv {
+      height: 500px;
+      flex: 1;
+      background-color: #fff;
+    }
+  }
+  @media (max-width: 767px) {
+    #myGuests {
+      width: 90%;
+      height: 100px;
+      margin-bottom: 10px;
+      background-color: #fff;
+    }
+    #myDiagramDiv {
+      width: 90%;
+      height: 500px;
+      background-color: #fff;
+    }
+  }
+
+#seatChartBody {
+	background-color: #f5f5f5;
+	padding: 15px;
+}
+
+.panel-footer button {
+	background-color: #abceea;
+	color: black;
+	border: 0px;
+}
+
+.panel-body .btn {
+	color: black;
+	background-color: #b1eaab;
+	border: 0px;
+}
+
+.done-true {
+	text-decoration: line-through;
+  	color: grey;
+}

@@ -1,0 +1,30 @@
+<div class="login-card">
+	<h1>Smart Groups</h1>
+	<h4>create a new user</h4>
+	
+	<form>
+		<input type="text" id="fn" placeholder="First Name" ng-model="regFName">
+
+		<input type="text" id="ln" placeholder="Last Name" ng-model="regLName">
+
+		<input type="text" id="email" ng-model="regEmail" ng-model-options='{ debounce: 1000 }' ng-change="isEmailValid()" placeholder="Email Address">
+		<div class="validPass" class="text-center" id="output1" ng-show="!validEmail"><h4>Invalid email address</h4></div>
+
+		<input type="text" id="newUser" ng-model="regUser.regUser" ng-model-options='{ debounce: 1000 }' ng-change="isUserAvailable()" placeholder="New Username">
+		<div class="validPass" class="text-center" id="output2" ng-show="!validUser"><h4>Invalid Username</h4></div>
+		<div class="validPass" class="text-center" id="output3"  ng-show="availUser.username"><h4>Username taken</h4></div>
+		
+		<div class="hoverTipTop">
+			<input type="Password" id="newPass" ng-model="regPass" ng-model-options='{ debounce: 1000 }' ng-change="isPassValid()" placeholder="Password">
+			<span class="tipText">Password must contain:<br>-8 characters <br>-A capital letter <br>-A number</span></span>
+		</div>
+		<div class="validPass" class="text-center" id="output4" ng-show="!validPass"><h4>Invalid password</div>
+		<input type="Password" id="confPass" ng-model="regPass2" ng-model-options='{ debounce: 1000 }' ng-change="isPassValid()" placeholder="Re-Enter Password">
+		
+		<div class="validPass" class="text-center" id="output5"  ng-show="!validMatch"><h4>Passwords don't match</h4></div>
+		<input type="submit" name="login" class="login login-submit" value="Create" ng-click="register()">
+		<div class="login-help">
+		    	<a href="" ng-click="beginLogin()">Return to Login</a>
+		    </div>
+	</form>
+</div>

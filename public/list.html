@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+	<script type="text/javascript" src="./list.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./list.css">
+</head>
+<body>
+<div ng-app="listApp" class="appBody row">
+	<h3>RandomList</h3>
+	<div ng-controller="listController as list">
+		<span>{{list.eligible()}} of {{list.items.length}} students available</span>
+		<ul class="unstyled">
+			<li ng-repeat="item in list.items">
+				<label class="checkbox">
+					<input type="checkbox" ng-model="item.active">
+					<span class="done-{{item.done}}">{{item.text}}</span>
+				</label>
+			</li>
+		</ul>
+		<form ng-submit="list.addItem()" id="input" class="ng-submitted">
+			<input type="text" text="" ng-model="list.inputText" size="30" placeholder="add new item to list">
+			<input class="btn-primary" type="submit" value="add">
+		</form>
+		<input class="btn-primary" type="submit" value="Complete" ng-click="list.complete()">
+		<input class="btn-primary" type="submit" value="Reset" ng-click="list.reset()">
+		<input class="btn-primary" type="submit" value="Select Random" ng-click="list.selectRandom()">
+	</div>
+</div>
+</body>
+</html>

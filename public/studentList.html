@@ -1,0 +1,69 @@
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>{{currentClass.name}}</h3>
+				<h5>students in this class</h5>
+			</div>
+			<div class="panel-body">
+				<table class="table-striped"><tbody>
+					<tr ng-repeat="student in studentArr"><td>
+						<a href="" class="active-{{student.active}}" ng-click="setCurrent($index)">{{student.name}}</a>
+					</td></tr>
+				</tbody></table>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-5 col-sm-offset-1 panel panel-default">
+		<div class="panel-heading text-center">
+			<h3>Student Information</h3>
+		</div>
+		<div class="panel-body">
+			<form name="form" ng-model="form" novalidate class="simple-form">
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Name:<br> <input name="" type="text" placeholder="student name" ng-model="form.name" class="form-control"></label>
+					</div>
+					<div class="col-sm-5">
+						<label>Reading Level:<br> 
+							<select name="" ng-model="form.RLevel" class="form-control" ng-options="num for num in readingLevels"></select>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Learning Type:<br>
+							<select name="" ng-model="form.LType" class="form-control" ng-options="type for type in learningTypes"></select>
+						</label>
+					</div>
+					<div class="col-sm-5">
+						<label>Personality Type:<br>
+							<select name="" ng-model="form.PType" class="form-control" ng-options="type for type in personalityTypes"></select>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Classes:<br></label>
+						<table class="table-striped inner-table table-bordered table-condensed"><tbody>
+							<tr ng-repeat="class in studentArr[current].classes"><td>
+								<a href="">{{class.name}}</a>
+							</td></tr>
+						</tbody></table>
+					</div>
+					<div class="col-sm-5">
+						<label>Groups:<br></label>
+						<table class="table-striped inner-table table-bordered table-condensed"><tbody>
+							<tr ng-repeat="group in studentArr[current].groups"><td>
+								<a href="">{{group.name}}</a>
+							</td></tr>
+						</tbody></table>
+					</div>
+				</div>
+				<div class=centerText>
+					<input type="submit" class="btn btn-primary" ng-click="update(form)" value="Save"><br>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

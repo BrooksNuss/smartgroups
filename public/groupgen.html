@@ -1,0 +1,66 @@
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>Group Generator</h3>
+			</div>
+			<div class="panel-body">
+				<form name="form" ng-model="form" novalidate class="simple-form">
+					<div class="row">
+						<div class="col-sm-6">
+							<label>Group Names:<br> 
+								<div class="hoverTipRight">
+									<input class="form-control" name="" type="text" ng-model="form.name">
+									<span class="tipText">Enter a name to reference this set of groups  (Example: "Reading")</span>
+								</div>
+							</label>
+						</div>
+						<div class="col-sm-5">
+							<label>Size:<br> 
+								<div class="hoverTipRight">
+									<input class="form-control" name="" type="number" min="1" ng-model="form.size">
+									<span class="tipText">Enter the size of the groups you wish to create</span>
+								</div>
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<label>Activity Type:<br> 
+								<div class="hoverTipRight">
+									<select class="form-control" name="" ng-model="form.activityType" ng-options="type for type in activityTypes"></select>
+									<span class="tipText">Choose an activity type from the dropdown menu</span>
+								</div>
+							</label>
+						</div>
+						<div class="col-sm-5">
+							<label>Group By:<br> 
+								<div class="hoverTipRight">
+									<select class="form-control" name="" ng-model="form.selectType" ng-options="type for type in selectTypes"></select>
+								<span class="tipText">Choose how the groups will be selected</span>
+								</div>
+							</label>
+						</div>
+					</div>
+					<!-- <h4>Student List</h4>
+					<div class="row">
+						<div class="col-sm-11">
+							<table class="table-striped inner-table table-bordered table-condensed"><tbody>
+								<tr ng-repeat="student in groupArr[current].studentList"><td>
+									<a href="" class="active-{{student.active}}">{{student.name}}</a>
+								</td></tr>
+							</tbody></table>
+							<br>
+						</div>
+					</div> -->
+					<div class=centerText>
+						<input type="submit" class="btn btn-primary" ng-click="generate()" value="Generate"><br>
+						<div class="hoverTip">
+							<a href="" data-toggle="modal" data-target="#helpModal" ng-click="helpBtn()">Help</a>
+							<span class="tipText">Review section E for help with group generation</span>
+						</div>	
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>

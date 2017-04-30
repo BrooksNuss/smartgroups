@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+	<div class="panel-heading text-center">
+		<h3>Seating Chart Creation Tool</h3>
+	</div>
+	<div class="panel-body" id="seatChartBody">
+		<div id="sample">
+			<div id="myFlexDiv">
+				<div id="myGuests" style="border: solid 1px black"></div>
+				<div id="myDiagramDiv" style="border: solid 1px black"></div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer centerText">
+		<div class="btn-group">
+			<button class="btn btn-primary" ng-click="updateChart()">Save chart</button>
+			<button class="btn btn-primary" ng-click="addTable('TableR8')">Add table (Rectangle)</button>
+			<button class="btn btn-primary" ng-click="addTable('TableC8')">Add table (Round)</button>
+			<button class="btn btn-primary" ng-click="addTable('Desk')">Add desk</button>
+		</div>
+		<h4 ng-if="currentChart">Current Chart: {{currentChart.name}}</h4>
+		<h4 ng-if="!currentChart">Select a chart from the Seating Charts page!</h4>
+	</div>
+		<!-- <pre id="savedModel" style="height:250px"></pre> -->
+	</div>
+</div>

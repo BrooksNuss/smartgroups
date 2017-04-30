@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-sm-10 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>Teachers</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table-striped"><tbody>
+					<tr ng-repeat="teacher in teacherList"><td>
+						<div class="hoverTipRight">
+							<a href="" ng-click="setCurrent($index)">{{teacher.username+" - "+teacher.fname+" "+teacher.lname}}</a>
+							<span class="tipText">Select this teacher</span>
+						</div>
+					</td></tr>
+				</tbody></table>
+			</div>
+			<div class="panel-footer">
+				<div class="row centerText">
+					<div class="col-sm-4">
+						<label>Teacher name: <input name="" type="text" placeholder="teacher name" ng-model="form.name" class="form-control"></label>
+					</div>
+					<div class="col-sm-4">
+						<label>Teacher email: <input name="" type="text" placeholder="teacher email" ng-model="form.email" class="form-control"></label>
+					</div>
+					<div class="col-sm-4">
+						<label>Teacher username: <input name="" type="text" placeholder="teacher image" ng-model="form.username" class="form-control"></label>
+					</div>
+					<div class="btn-group">
+						<button class="btn btn-primary" ng-click="passwordReset()" data-toggle="modal" data-target="#passwordModal">Reset Password</button>
+						<button class="btn btn-primary" ng-click="delete()">Delete Teacher</button>
+						<button class="btn btn-primary" ng-click="update()">Update User</button>
+					</div>
+				</div>
+			</div>
+			<!-- password modal -->
+			<div class="modal fade" id="passwordModal" role="dialog">
+			    <div class="modal-dialog">
+			      	<div class="modal-content">
+				        <div class="modal-header">
+				            <button type="button" class="close" data-dismiss="modal">&times;</button>
+				            <h3 class="modal-title">{{teacherList[current].username}}'s new temporary password is</h3>
+				        </div>
+				        <div class="modal-body">
+				        	<h1>{{newPass}}</h1>
+				        </div>
+				        <div class="modal-footer">
+				            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        </div>
+				    </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

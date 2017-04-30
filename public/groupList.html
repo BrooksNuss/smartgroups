@@ -1,0 +1,148 @@
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>Groups</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table-striped"><tbody>
+					<tr ng-repeat="group in groupArr"><td>
+						<a href="" class="active-{{group.active}}" ng-click="setCurrent($index)">{{group.name}}</a>
+					</td></tr>
+				</tbody></table>
+			</div>
+		</div>
+		<div class="hoverTip">
+			<a ng-click="addGroup()" href=""><span class="glyphicon glyphicon-plus addBtn" aria-hidden="true"></span><span class="addBtn"> Add </span></a>
+			<span class="tipText">Add a new empty group</span>
+		</div>
+		<div class="hoverTip">	
+			<a ng-click="removeGroup()" href=""><span class="glyphicon glyphicon-minus removeBtn" aria-hidden="true"></span><span class="removeBtn"> Remove </span></a>
+			<span class="tipText">Delete the selected group</span>
+		</div>	
+	</div>
+	<div class="col-sm-5 col-sm-offset-1 panel panel-default">
+		<div class="panel-heading text-center">
+			<h3>Group Information</h3>
+		</div>
+		<div class="panel-body">
+			<form name="form" ng-model="form" novalidate class="simple-form">
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Name:<br> <input class="form-control" placeholder="name your group" name="" type="text" ng-model="form.name"></label>
+					</div>
+					<div class="col-sm-5">
+						<label>Size:<br>
+							<div class="hoverTipRight"> 
+								<input name="" type="number" min="1" ng-model="form.size" class="form-control">
+								<span class="tipText">Select the size of the groups you wish to create</span>
+							</div>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Activity Type:<br> 
+			                <div class="hoverTipRight">
+				                <select name="" ng-model="form.activityType" class="form-control" ng-options="type for type in activityTypes"></select>
+				                <span class="tipText">Select the activity that the group will complete</span>
+							</div>
+						</label>
+					</div>
+					<!-- <div class="col-sm-6">
+						<label>Selection Type:<br> 
+			                <div class="hoverTipRight">
+				                <select class="form-control" name="" ng-model="form.selectType" ng-options="type for type in selectTypes"></select>
+				                <span class="tipText">Choose how the groups will be selected</span>
+			                </div>
+						</label>
+					</div> -->
+				</div>
+				<h4>Student List</h4>
+				<div class="row">
+					<div class="col-sm-11">
+						<table class="table-striped inner-table table-bordered table-condensed"><tbody>
+							<tr ng-repeat="student in groupArr[current].studentList"><td>
+								<a href="" class="active-{{student.active}}">{{student.name}}</a>
+							</td></tr>
+						</tbody></table>
+						<br>
+					</div>
+				</div>
+				<div class="hoverTip">
+				<a href="" data-toggle="modal" data-target="#addModal" ng-click="startStudentAddSelect()"><span class="glyphicon glyphicon-plus addBtn" aria-hidden="true"></span><span class="addBtn">Add</span></a>
+				<span class="tipText">Choose Students to add to the selected group</span>
+				</div>
+				<div class="hoverTip">
+				<a href="" data-toggle="modal" data-target="#removeModal" ng-click="startStudentRemoveSelect()"><span class="glyphicon glyphicon-minus removeBtn" aria-hidden="true"></span><span class="removeBtn">Remove</span></a>
+				<span class="tipText">Choose Students to remove from selected group</span>
+				</div>
+				<div class=centerText>
+					<input type="submit" class="btn btn-primary" ng-click="update(form)" value="Save"><br>
+				</div>
+				<!-- Modal for add -->
+					<div class="modal fade" id="addModal" role="dialog">
+					    <div class="modal-dialog">
+					      	<div class="modal-content">
+						        <div class="modal-header">
+						            <button type="button" class="close" data-dismiss="modal">&times;</button>
+						            <h4 class="modal-title">Add students to group</h4>
+						        </div>
+						        <div class="modal-body">
+						            <p>Select the students to add to this group</p>
+						            <div class="checkbox">
+						            <table class="table-striped"><tbody>
+										<span ng-repeat="student in studentdb">
+											<input type="checkbox" ng-click="toggleStudentSelect($index)" ng-model="student.selected"><a href="" ng-click="student.selected=!student.selected">{{student.name}}</a></input>
+										</span>
+									</tbody></table>
+									</div>
+									<div class="alert alert-success" ng-show="addComplete && addSuccess">
+  										Student(s) successfully added to group!
+									</div>
+									<div class="alert alert-danger" ng-show="addComplete && !addSuccess">
+  										Group already contains at least one of the chosen students!
+									</div>
+						        </div>
+						        <div class="modal-footer">
+						            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAdd()">Close</button>
+						            <button type="button" class="btn btn-default" ng-click="addToGroup()">Add to group</button>
+						        </div>
+						    </div>
+					    </div>
+					</div>
+					<!-- Modal for remove -->
+					<div class="modal fade" id="removeModal" role="dialog">
+					    <div class="modal-dialog">
+					      	<div class="modal-content">
+						        <div class="modal-header">
+						            <button type="button" class="close" data-dismiss="modal">&times;</button>
+						            <h4 class="modal-title">Remove students from group</h4>
+						        </div>
+						        <div class="modal-body">
+						            <p>Select the students to remove from this group</p>
+						            <div class="checkbox">
+						            <table class="table-striped"><tbody>
+										<span ng-repeat="student in studentdb">
+											<input type="checkbox" ng-click="toggleStudentSelect($index)" ng-model="student-selected"><a href="" ng-click="student.selected=!student.selected">{{student.name}}</a></input>
+										</span>
+									</tbody></table>
+									</div>
+									<div class="alert alert-success" ng-show="removeComplete && removeSuccess">
+  										Student(s) successfully removed from group!
+									</div>
+									<div class="alert alert-danger" ng-show="removeComplete && !removeSuccess">
+  										The student has already been removed from the group!
+									</div>
+						        </div>
+						        <div class="modal-footer">
+						            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeRemove()">Close</button>
+						            <button type="button" class="btn btn-default" ng-click="removeFromGroup()">Remove from group</button>
+						        </div>
+						    </div>
+					    </div>
+					</div>
+			</form>
+		</div>
+	</div>
+</div>

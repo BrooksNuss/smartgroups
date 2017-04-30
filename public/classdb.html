@@ -1,0 +1,66 @@
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h3>All Classes</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table-striped"><tbody>
+					<tr ng-repeat="class in classArr"><td>
+						<a href="" class="active-{{class.active}}" ng-click="setCurrent($index)">{{class.name}} - {{class.teacher}}</a>
+					</td></tr>
+				</tbody></table>
+			</div>
+		</div>
+		<div class="hoverTip">
+			<a ng-click="addClass()" href=""><span class="glyphicon glyphicon-plus addBtn" aria-hidden="true"></span><span class="addBtn">Add</span></a>
+			<span class="tipText">Add a new class into the database</span>
+		</div>	
+		<div class="hoverTip">
+			<a ng-click="removeClass()" href=""><span class="glyphicon glyphicon-minus removeBtn" aria-hidden="true"></span><span class="removeBtn">Remove</span></a>
+			<span class="tipText">Delete the selected class from the database</span>
+		</div>
+	</div>
+	<div class="col-sm-5 col-sm-offset-1 panel panel-default">
+		<div class="panel-heading text-center">
+			<h3>Class Information</h3>
+		</div>
+		<div class="panel-body">
+			<form name="form" ng-model="form" novalidate class="simple-form">
+				<div class="row">
+					<div class="col-sm-6">
+						<label>Name:<br> <input class="form-control" placeholder="class name" name="" type="text" ng-model="form.name"></label>
+					</div>
+					<div class="col-sm-5">
+						<label>Teacher:<br> <input class="form-control" placeholder="teacher name" name="" type="text" ng-model="form.teacher"></label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Student List</h4>
+						<table class="table-striped inner-table table-bordered table-condensed"><tbody>
+							<tr ng-repeat="student in classArr[current].studentList"><td>
+								<a href="">{{student.name}}</a>
+							</td></tr>
+						</tbody></table>
+					</div>
+					<div class="col-sm-5">
+						<h4>Group List</h4>
+						<table class="table-striped inner-table table-bordered table-condensed"><tbody>
+							<tr ng-repeat="group in classArr[current].groupList"><td>
+								<a href="" class="active-{{group.active}}">{{group.name}}</a>
+							</td></tr>
+						</tbody></table>
+					</div>
+				</div>
+				<div class=centerText>
+					<div class="hoverTip">
+							<a href="" data-toggle="modal" data-target="#helpModal" ng-click="helpBtn()">Help</a>
+							<span class="tipText">Within this form you may edit the name and teacher of a class</span>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
